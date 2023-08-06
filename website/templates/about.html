@@ -1,0 +1,27 @@
+{%extends "base.html" %}
+{%block title %}
+About
+{%endblock%}
+
+{% block active1 %}
+active
+{% endblock %}
+
+{%block intro%}
+<div class="intro1">
+<div class="container">
+    <h1 >Boston Housing Dataset</h1>
+    <h4>A Dataset derived from information collected by the U.S. Census Service concerning housing in the area of Boston
+        Mass.</h4>
+        <p class="container">
+            This dataset contains information collected by the U.S Census Service concerning housing in the area of
+            Boston Mass. It was obtained from the StatLib archive (http://lib.stat.cmu.edu/datasets/boston), and has
+            been used extensively throughout the literature to benchmark algorithms. However, these comparisons were
+            primarily done outside of Delve and are thus somewhat suspect. The dataset is small in size with only 506
+            cases.
+            <i>The data was originally published by Harrison, D. and Rubinfeld, D.L. `Hedonic prices and the demand
+                for clean air', J. Environ. Economics & Management, vol.5, 81-102, 1978.</i>
+        </p>
+</div>
+</div>
+{%endblock%}

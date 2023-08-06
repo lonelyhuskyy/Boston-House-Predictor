@@ -1,0 +1,67 @@
+{%extends "base.html"%}
+
+{%block title%}
+Boston Nexus
+{%endblock%}
+
+{% block active2 %}
+active
+{% endblock %}
+
+
+
+{%block intro%}
+<div class="intro1">
+  <div id="formCont" class="container">
+    <div id="msgFlash">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %} {% if category ==
+      'error' %}
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
+    </div>
+    <form action="/contact" id="formContact" method="post">
+
+      <h1>Contact Us</h1>
+      <small style="font-size: 15px; color:#fe4066;" class=" form-text text-muted">We'll love to hear from you.</small>
+      <br>
+      <div class="form-group col-lg-12">
+
+        <input type="text" required class="form-control" name="nameInput" id="nameInput">
+        <label for="nameInput">Full Name</label>
+      </div>
+      <div class="form-group col-lg-12">
+          <input type="email" required class="form-control" name="emailInput" id="emailInput"
+            >
+          <label for="emailInput">Email address</label>
+          <small id="emailHelp" style="font-size: 15px; color:#fe4066;" class="form-text text-muted">We'll never share your email with
+            anyone else.</small>
+      </div>
+      <div class="form-group col-lg-12">
+        <input type="text" required class="form-control" name="phoneInput" id="phoneInput">
+        <label for="phoneInput">Phone Number</label>
+      </div>
+
+      <div class="form-group col-lg-12">
+
+        <textarea name="msgInput" id="msgInput" class="form-control"></textarea>
+        <label for="msgInput">Message</label>
+      </div>
+      <button class="btn" id="sendEmail" type="submit">Subscribe</button>
+
+    </form>
+  </div>
+</div>
+{%endblock%}

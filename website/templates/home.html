@@ -1,0 +1,328 @@
+{%extends "base.html" %}
+{%block title %}
+Boston Nexus
+{%endblock%}
+
+{% block active %}
+active
+{% endblock %}
+
+{%block intro%}
+<div class="intro">
+<div id="brand" class="container">
+    <p class="first-title">Boston Nexus - Unlocking Real Estate's Potential.</p>
+    <p class="banner-des">Experience the Future of Property Insights.</p>
+    <!-- <a href="{{url_for('views.about')}}" class="btn" id="predbtn">Learn More</a> -->
+    
+    <button id="features" type="button" class="btn btn-primary" onclick="showPage('page1')" data-toggle="modal" data-target=".bd-example-modal-lg">
+    Predict Price</button>
+
+</div>
+</div>
+
+{%endblock%}
+
+
+{%block content%}
+<div class="inpvalue">
+<div id="featuresList" class="container">
+    <h3 id="misc">Miscellaneous Details</h3>
+    <div class="flex-row">
+        <ul id="dul" class="container">
+            <div class="flex-col">
+                <li class="labels">
+                    <span class="pointers">Origin - </span>
+                    <span>The origin of the boston housing data is <b>Natural</b>.</span>
+                </li>
+                <li class="labels">
+                    <span class="pointers">Usage - </span>
+                    <span>This dataset may be used for <b>Assessment</b>.</span>
+                </li>
+                <li class="labels">
+                    <span class="pointers">Number of Cases - </span>
+                    <span>The dataset contains a total of <b>506</b> cases.</span>
+                </li>
+                <li class="labels">
+                    <span class="pointers">Order - </span>
+                    <span>The order of the cases is <b>mysterious</b>.</span>
+                </li>
+                <li class="labels">
+                    <span class="pointers">Variables - </span>
+                    <span>There are <b>14</b> attributes in each case of the dataset. They are:</span>
+                </li>
+                
+            </div>
+        </ul>
+    </div>
+    <div  class="flex-row">
+        <ol id="dol" class="container">
+            <div id="dolf" class="flex-row">
+                <div class="flex-col">
+                    <li class="labels">
+                        <span class="labelsfeat">CRIM - </span>
+                        <span>per capita crime rate by town</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">ZN - </span>
+                        <span>proportion of residential land zoned for lots over 25,000 sq.ft.</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">INDUS - </span>
+                        <span>proportion of non-retail business acres per town.</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">CHAS - </span>
+                        <span>Charles River dummy variable (1 if tract bounds river; 0 otherwise)</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">NOX -</span>
+                        <span>nitric oxides concentration (parts per 10 million)</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">RM -</span>
+                        <span>average number of rooms per dwelling</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">AGE -</span>
+                        <span>
+                            proportion of owner-occupied units built prior to 1940
+                        </span>
+                    </li>
+                    <!--  -->
+                </div>
+                <div class="flex-col">
+                    <li class="labels">
+                        <span class="labelsfeat">DIS -</span>
+                        <span>weighted distances to five Boston employment centres</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">RAD -</span>
+                        <span>index of accessibility to radial highways</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">TAX -</span>
+                        <span>full-value property-tax rate per $10,000</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">PTRATIO -</span>
+                        <span>pupil-teacher ratio by town</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">B -</span>
+                        <span>1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">LSTAT -</span>
+                        <span>% lower status of the population</span>
+                    </li>
+                    <li class="labels">
+                        <span class="labelsfeat">MEDV -</span>
+                        <span>Median value of owner-occupied homes in $1000'ss</span>
+                    </li>
+                    <!--  -->
+                </div>
+            </div>
+        </ol>
+    </div>
+</div>
+
+
+
+<div id= "modal" class="modal fade bd-example-modal-lg" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div id="dcontm" class="modal-dialog modal-xl">
+        <div id="contm" class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ip_head">Specify Input Parameter</h3>
+                <a href="{{url_for('views.home')}}" id="closeButton"  class="btn close" >
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form id="ip_para" class="container" action="/predict" method="POST">
+                    
+                    <div class="modal-page" id="page1">
+                        <div id="" class="inpFeatures flex-row">
+                            <div class="form-group col">
+                                <label for="CRIM" class="form-label">CRIM</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="003.613" min="000.006" max="088.976" step="0.0005"
+                                        class="form-range" id="CRIM" name="CRIM">
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="crim" for="CRIM"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="ZN" class="form-label">ZN</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="011.363" min="000.000" max="100.000" step="0.5"
+                                        class=" form-range" id="ZN" name="ZN">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="zn" for="ZN"></span>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+    
+                        <div id="" class="inpFeatures flex-row">
+                            <div class=" col form-group">
+                                <label for="INDUS" class="form-label">INDUS</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="011.136" min="000.460" max="027.740" step="0.01"
+                                        class=" form-range" id="INDUS" name="INDUS">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="indus" for="INDUS"></span>
+                                </div>
+                            </div>
+                            <div class=" col form-group">
+                                <label for="CHAS" class="form-label">CHAS</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="000.069" min="000.000" max="001.000" step="1"
+                                        class=" form-range" id="CHAS" name="CHAS">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="chas" for="CHAS"></span>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+    
+    
+                        <div id="" class="inpFeatures flex-row">
+                            <div class="form-group col">
+                                <label for="NOX" class="form-label">NOX</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="000.554" min="000.385" step="0.02" max="000.871"
+                                        class=" form-range" id="NOX" name="NOX">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="nox" for="NOX"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="RM" class="form-label">RM</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="006.284" min="003.561" step="0.002" max="008.780"
+                                        class=" form-range" id="RM" name="RM">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="rm" for="RM"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="" class="inpFeatures flex-row">
+                            <div class="form-group col">
+                                <label for="AGE" class="form-label">AGE</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="068.574" min="002.900" max="100.000" step="0.1"
+                                        class=" form-range" id="AGE" name="AGE">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="age" for="AGE"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="DIS" class="form-label">DIS</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="003.795" min="001.129" max="012.126" step="0.02"
+                                        class=" form-range" id="DIS" name="DIS">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="dis" for="DIS"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            
+                        </div> -->
+                    </div>
+                    <div class="modal-page" id="page2">
+                        <div id="" class="inpFeatures flex-row">
+                            <div class="form-group col">
+                                <label for="RAD" class="form-label">RAD</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="009.549" min="001.000" max="024.000" step="1"
+                                        class=" form-range" id="RAD" name="RAD">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="rad" for="RAD"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="TAX" class="form-label">TAX</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="408.237" min="187.000" step="1" max="711.000"
+                                        class=" form-range" id="TAX" name="TAX">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="tax" for="TAX"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="" class="inpFeatures flex-row">
+                            <div class="col form-group">
+                                <label for="PTRATIO" class="form-label">PTRATIO</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="018.455" min="012.600" step="0.2" max="022.000"
+                                        class=" form-range" id="PTRATIO" name="PTRATIO">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="ptratio" for="PTRATIO"></span>
+                                </div>
+                            </div>
+                            <div class="col form-group">
+                                <label for="B" class="form-label">B</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="356.674" min="000.320" step="0.3" max="396.900"
+                                        class=" form-range" id="B" name="B">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="b" for="B"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="" class="inpFeatures flex-row">
+                            <div class="col form-group">
+                                <label for="LSTAT" class="form-label">LSTAT</label>
+                                <div><span id="minValue"></span>
+                                    <input type="range" value="012.653" min="001.730" step="0.02" max="037.970"
+                                        class=" form-range" id="LSTAT" name="LSTAT">
+                                    
+                                        <span id="maxValue"></span><br>
+                                    <span class="value" name="lstat" for="LSTAT"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col form-group">
+                                <button id="predictBtn" type="submit" class="btn">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    Predict Price
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </form>
+
+            </div>
+            <div id="foot" class="modal-footer">
+                <button id="next" type="button" class="btn" onclick="showPage('page2')">
+                    Next <i class="fas fa fa-chevron-right"></i>
+                </button>
+                <button id="prev" type="button" class="btn" onclick="showPage('page1')">
+                <i class="fas fa fa-chevron-left"></i> Previous 
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{%endblock%}
